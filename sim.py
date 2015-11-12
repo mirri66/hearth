@@ -12,11 +12,17 @@ def make_deck():
 	card_data = load_cards()['Basic'] 
 	deck = list() 
 	while len(deck) < 30:
-		rand_card = card_data[random.randint(1,len(card_data)-1)]
+		rand_card = card_data[random.randint(0,len(card_data)-1)]
 		# TODO limit max 2 per deck, restrict cards per hero class
 		# make smarter choices
 		deck.append(rand_card)
 	return deck
+
+def draw_card(deck):
+	idx = random.randint(0,len(deck)-1)
+	rand_card = deck[idx]
+	deck.pop(idx)
+	return rand_card, deck
 
 def main():
 	deck_A = make_deck()
@@ -27,13 +33,13 @@ def main():
 	# make decks
 
 	while True:
-
-		turn += 1
+		players[current_player]['turn'] += 1
 		players[current_player]['card_count'] += -1
-		mana = turn
+		mana = players[current_player]['turn']
+
 		if mana > 10:
 			mana = 10
-		print current_player + '\'s turn: ' + str(turn) + ', mana: ' + str(mana)
+		print current_player + '\'s turn: ' + str(players[current_player]['turn']) + ', mana: ' + str(mana)
 
 		# temporary
 		if players[current_player]['card_count'] == 0:
@@ -52,4 +58,3 @@ def main():
 
 if __name__=='__main__':
 	main()
-	
