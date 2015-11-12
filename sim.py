@@ -29,9 +29,10 @@ def main():
 	deck = dict()
 	deck['A'] = make_deck()
 	deck['B'] = make_deck()
-	players = {'A': {'life':20, 'card_count':30, 'turn':0, 'card_penalty':0}, 
-			   'B': {'life':20, 'card_count':30, 'turn':0, 'card_penalty':0}}
+	players = {'A': {'life':20, 'card_count':30, 'turn':0, 'card_penalty':0, 'board_state':{}}, 
+			   'B': {'life':20, 'card_count':30, 'turn':0, 'card_penalty':0, 'board_state':{}}}
 	turn = 0
+
 	current_player= 'A' if random.randint(1,2) == 1 else 'B'
 	# make decks
 
